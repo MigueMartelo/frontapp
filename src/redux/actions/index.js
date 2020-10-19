@@ -7,6 +7,8 @@ import {
 
 import axios from 'axios';
 
+const APIUrl = 'http://localhost:9000/customer';
+
 export const addCustomer = customer => ({
 	type: ADD_CUSTOMER,
 	payload: customer,
@@ -29,8 +31,17 @@ export const deleteCustomer = customerId => ({
 
 export const getCustomersAction = () => async dispatch => {
 	try {
-		const customers = await axios.get('http://localhost:9000/customer');
+		const customers = await axios.get(APIUrl);
 		dispatch(getCustomers(customers.data.response));
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const saveCurstomerAction = customer => async dispatch => {
+	try {
+		await axios.post(APIUrl, customer);
+		dispatch(addCustomer(customer));
 	} catch (error) {
 		console.error(error);
 	}
