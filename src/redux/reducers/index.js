@@ -21,6 +21,22 @@ export default function (state = initialState, action) {
 				...state,
 				customers: action.payload,
 			};
+		case EDIT_CUSTOMER:
+			return {
+				...state,
+				customers: state.customers.map(customer =>
+					customer.id === action.payload.id
+						? (customer = action.payload)
+						: customer
+				),
+			};
+		case DELETE_CUSTOMER:
+			return {
+				...state,
+				customers: state.customers.filter(
+					customer => customer.id !== action.payload
+				),
+			};
 		default:
 			return state;
 	}

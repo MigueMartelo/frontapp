@@ -46,3 +46,21 @@ export const saveCurstomerAction = customer => async dispatch => {
 		console.error(error);
 	}
 };
+
+export const deleteCustomerAction = customerId => async dispatch => {
+	try {
+		await axios.delete(`${APIUrl}/${customerId}`);
+		dispatch(deleteCustomer(customerId));
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const editCustomerAction = customer => async dispatch => {
+	try {
+		await axios.put(`${APIUrl}`, customer);
+		dispatch(editCustomer(customer));
+	} catch (error) {
+		console.error(error);
+	}
+};

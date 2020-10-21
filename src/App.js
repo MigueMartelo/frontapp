@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 
 import './App.css';
+import EditCustomer from './pages/EditCustomer';
 
 function App() {
 	return (
@@ -20,6 +21,9 @@ function App() {
 					</Route>
 					<Route path='/add-customer'>
 						<AddCustomer />
+					</Route>
+					<Route path='/edit-customer/:customerId'>
+						<EditCustomer />
 					</Route>
 					<Route path='/accounts'>
 						<Account />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	Button,
 	FormControl,
@@ -6,8 +6,9 @@ import {
 	makeStyles,
 	TextField,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { saveCurstomerAction } from '../../redux/actions';
+import { useHistory, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { saveCurstomerAction, editCustomerAction } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,7 @@ const CustomerForm = () => {
 	const dispatch = useDispatch();
 
 	const addCustomer = customer => dispatch(saveCurstomerAction(customer));
+	const editCustomer = customer => dispatch(editCustomerAction(customer));
 
 	let history = useHistory();
 
@@ -37,6 +39,32 @@ const CustomerForm = () => {
 	const [workPhone, setWorkPhone] = useState('');
 	const [personalEmail, setPersonalEmail] = useState('');
 	const [workEmail, setWorkEmail] = useState('');
+
+	const { customerId } = useParams();
+
+	useEffect(() => {
+		const setCustomer = async customerId => {
+			const response = await axios.get(
+				`http://localhost:9000/customer/${customerId}`
+			);
+			const customer = response.data.response;
+			setName(customer.name);
+			setAddress1(customer.address.address1);
+			setAddress2(customer.address.address2);
+			setCity(customer.address.city);
+			setState(customer.address.state);
+			setPostalCode(customer.address.postalCode);
+			setCountry(customer.address.country);
+			setPersonalPhone(customer.contact.personalPhone);
+			setPersonalEmail(customer.contact.personalEmail);
+			setWorkEmail(customer.contact.workEmail);
+			setWorkPhone(customer.contact.workPhone);
+		};
+
+		if (customerId) {
+			setCustomer(customerId);
+		}
+	}, []);
 
 	const handleChange = e => {
 		const { name, value } = e.target;
@@ -101,7 +129,13 @@ const CustomerForm = () => {
 			},
 		};
 
-		addCustomer(customer);
+		if (customerId) {
+			customer.id = Number(customerId);
+			customer.status = 'ACTIVE';
+			editCustomer(customer);
+		} else {
+			addCustomer(customer);
+		}
 
 		history.push('/customers');
 	};
