@@ -1,42 +1,28 @@
 import {
-	ADD_CUSTOMER,
-	DELETE_CUSTOMER,
-	GET_CUSTOMERS,
-	EDIT_CUSTOMER,
+	ADD_CUSTOMER, GET_CUSTOMERS, EDIT_CUSTOMER, DELETE_CUSTOMER,
+	ADD_ACCOUNT, GET_ACCOUNTS, EDIT_ACCOUNT, DELETE_ACCOUNT,
 } from '../types';
+
+import customerReducers from './customer';
+import accountReducers from './account';
 
 const initialState = {
 	customers: [],
+	accounts: [],
 };
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case ADD_CUSTOMER:
-			return {
-				...state,
-				customers: [...state.customers, action.payload],
-			};
 		case GET_CUSTOMERS:
-			return {
-				...state,
-				customers: action.payload,
-			};
+		case ADD_CUSTOMER:
 		case EDIT_CUSTOMER:
-			return {
-				...state,
-				customers: state.customers.map(customer =>
-					customer.id === action.payload.id
-						? (customer = action.payload)
-						: customer
-				),
-			};
 		case DELETE_CUSTOMER:
-			return {
-				...state,
-				customers: state.customers.filter(
-					customer => customer.id !== action.payload
-				),
-			};
+			return customerReducers(state, action);
+		case GET_ACCOUNTS:
+		case ADD_ACCOUNT:
+		case EDIT_ACCOUNT:
+		case DELETE_ACCOUNT:
+			return accountReducers(state, action);
 		default:
 			return state;
 	}
