@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Button } from '@material-ui/core';
-import CustomerList from '../components/CustomersList';
+import CustomerList from '../components/Customer/CustomersList';
 import { getCustomersAction } from '../redux/actions';
 import { Link } from 'react-router-dom';
 

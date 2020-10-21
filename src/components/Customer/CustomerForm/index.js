@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { saveCurstomerAction, editCustomerAction } from '../../redux/actions';
+import { saveCustomerAction, editCustomerAction } from '../../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,7 @@ const CustomerForm = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
-	const addCustomer = customer => dispatch(saveCurstomerAction(customer));
+	const addCustomer = customer => dispatch(saveCustomerAction(customer));
 	const editCustomer = customer => dispatch(editCustomerAction(customer));
 
 	let history = useHistory();

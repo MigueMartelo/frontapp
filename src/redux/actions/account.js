@@ -38,7 +38,7 @@ export const getAccountsAction = () => async dispatch => {
 	}
 };
 
-export const saveCurstomerAction = customer => async dispatch => {
+export const saveAccountAction = customer => async dispatch => {
 	try {
 		await axios.post(APIUrl, customer);
 		dispatch(addAccount(customer));

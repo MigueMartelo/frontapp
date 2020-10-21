@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import CustomerForm from '../components/CustomerForm';
+import CustomerForm from '../components/Customer/CustomerForm';
 
 const EditCustomer = () => {
 	return (

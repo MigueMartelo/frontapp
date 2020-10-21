@@ -9,7 +9,7 @@ import {
 	Paper,
 	Button,
 } from '@material-ui/core';
-import { deleteCustomerAction } from '../../redux/actions';
+import { deleteCustomerAction } from '../../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -53,9 +53,7 @@ const CustomerList = ({ customers }) => {
 									variant='contained'
 									color='secondary'
 									size='small'
-									onClick={() => {
-										deleteHandler(customer.id);
-									}}
+									onClick={() => deleteHandler(customer.id)}
 								>
 									Delete
 								</Button>
