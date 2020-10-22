@@ -12,8 +12,18 @@ import {
 import { deleteAccountAction } from '../../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		'& button.MuiButtonBase-root': {
+			marginLeft: theme.spacing(1),
+		},
+	},
+}));
 
 const AccountList = ({ accounts }) => {
+	const classes = useStyles();
 	const dispatch = useDispatch();
 
 	const deleteAccount = accountId =>
@@ -24,20 +34,28 @@ const AccountList = ({ accounts }) => {
 	};
 
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer component={Paper} className={classes.root}>
 			<Table>
 				<TableHead>
 					<TableRow>
+						<TableCell>Id</TableCell>
 						<TableCell>Customer Id</TableCell>
+						<TableCell>Type</TableCell>
+						<TableCell>Status</TableCell>
 						<TableCell>Balance</TableCell>
+						<TableCell>Actions</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{accounts.map(account => (
-						<TableRow key={account.custId}>
+						<TableRow key={account.number}>
+							<TableCell>{account.number}</TableCell>
+							<TableCell>{account.customerId}</TableCell>
+							<TableCell>{account.type}</TableCell>
+							<TableCell>{account.status}</TableCell>
 							<TableCell>{account.balance}</TableCell>
 							<TableCell>
-								<Link to={`/edit-account/${account.id}`}>
+								<Link to={`/edit-account/${account.number}`}>
 									<Button variant='contained' color='default' size='small'>
 										Edit
 									</Button>
@@ -46,7 +64,7 @@ const AccountList = ({ accounts }) => {
 									variant='contained'
 									color='secondary'
 									size='small'
-									onClick={() => deleteHandler(account.id)}
+									onClick={() => deleteHandler(account.number)}
 								>
 									Delete
 								</Button>

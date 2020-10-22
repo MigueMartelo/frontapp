@@ -12,8 +12,18 @@ import {
 import { deleteCustomerAction } from '../../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		'& button.MuiButtonBase-root': {
+			marginLeft: theme.spacing(1),
+		},
+	},
+}));
 
 const CustomerList = ({ customers }) => {
+	const classes = useStyles();
 	const dispatch = useDispatch();
 
 	const deleteCustomer = customerId =>
@@ -23,7 +33,7 @@ const CustomerList = ({ customers }) => {
 		deleteCustomer(customerId);
 	};
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer component={Paper} className={classes.root}>
 			<Table>
 				<TableHead>
 					<TableRow>

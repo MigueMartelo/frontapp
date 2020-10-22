@@ -64,7 +64,7 @@ const CustomerForm = () => {
 		if (customerId) {
 			setCustomer(customerId);
 		}
-	}, []);
+	}, [customerId]);
 
 	const handleChange = e => {
 		const { name, value } = e.target;

@@ -13,7 +13,7 @@ export default function Account() {
         // eslint-disable-next-line
     }, []);
 
-    const customers = useSelector(state => state.customers);
+    const accounts = useSelector(state => state.accounts);
 
 	return (
 		<div>
@@ -29,8 +29,8 @@ export default function Account() {
 					</Link>
 				</Grid>
 			</Grid>
-			{customers.length ? (
-				<AccountList customers={customers} />
+			{accounts.length ? (
+				<AccountList accounts={accounts} />
 			) : (
 				<h2>Accounts not found</h2>
 			)}
