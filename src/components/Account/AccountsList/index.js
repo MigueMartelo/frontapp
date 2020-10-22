@@ -30,7 +30,9 @@ const AccountList = ({ accounts }) => {
 		dispatch(deleteAccountAction(accountId));
 
 	const deleteHandler = accountId => {
-		deleteAccount(accountId);
+		if(window.confirm(`Are you sure delete account #${accountId}?`)) {
+			deleteAccount(accountId);
+		}
 	};
 
 	return (
