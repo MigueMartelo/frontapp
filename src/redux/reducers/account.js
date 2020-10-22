@@ -21,15 +21,15 @@ export default function (state, action) {
 			return {
 				...state,
 				accounts: state.accounts.map(account =>
-					account.id === action.payload.id
-						? action.payload : account
+					account.number === action.payload.number
+						? action.number : account
 				),
 			};
 		case DELETE_ACCOUNT:
 			return {
 				...state,
 				accounts: state.accounts.filter(
-					account => account.id !== account.payload
+					account => account.number !== action.payload
 				),
 			};
 		default:

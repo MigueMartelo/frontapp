@@ -24,9 +24,9 @@ export const editAccount = customer => ({
 	payload: customer,
 });
 
-export const deleteAccount = customerId => ({
+export const deleteAccount = number => ({
 	type: DELETE_ACCOUNT,
-	payload: customerId,
+	payload: number,
 });
 
 export const getAccountsAction = () => async dispatch => {
@@ -40,17 +40,19 @@ export const getAccountsAction = () => async dispatch => {
 
 export const saveAccountAction = customer => async dispatch => {
 	try {
-		await axios.post(APIUrl, customer);
-		dispatch(addAccount(customer));
+		const { data } = await axios.post(APIUrl, customer);
+		if(data.status) {
+			dispatch(addAccount(data.response));
+		}
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-export const deleteAccountAction = customerId => async dispatch => {
+export const deleteAccountAction = id => async dispatch => {
 	try {
-		await axios.delete(`${APIUrl}/${customerId}`);
-		dispatch(deleteAccount(customerId));
+		await axios.delete(`${APIUrl}/${id}`);
+		dispatch(deleteAccount(id));
 	} catch (error) {
 		console.error(error);
 	}

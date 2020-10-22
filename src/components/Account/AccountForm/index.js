@@ -161,6 +161,7 @@ const AccountForm = () => {
 				<FormControl fullWidth>
 					<TextField
 						variant='outlined'
+						type='number'
 						name='balance'
 						label='Balance'
 						value={balance}
