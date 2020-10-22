@@ -8,6 +8,9 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 
 import './App.css';
+import EditCustomer from './pages/EditCustomer';
+import EditAccount from './pages/EditAccount';
+import AddAccount from './pages/AddAccount';
 
 function App() {
 	return (
@@ -21,9 +24,20 @@ function App() {
 					<Route path='/add-customer'>
 						<AddCustomer />
 					</Route>
+					<Route path='/edit-customer/:customerId'>
+						<EditCustomer />
+					</Route>
+
 					<Route path='/accounts'>
 						<Account />
 					</Route>
+					<Route path='/add-account'>
+						<AddAccount />
+					</Route>
+					<Route path='/edit-account/:accountId'>
+						<EditAccount />
+					</Route>
+
 					<Route path='/'>
 						<Home />
 					</Route>
