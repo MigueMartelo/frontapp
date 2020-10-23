@@ -96,7 +96,7 @@ const AccountForm = () => {
 		};
 
 		if (accountId) {
-			account.id = Number(accountId);
+			account.number = Number(accountId);
 			editAccount(account);
 		} else {
 			addAccount(account);

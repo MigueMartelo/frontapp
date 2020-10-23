@@ -22,7 +22,7 @@ export default function (state, action) {
 				...state,
 				accounts: state.accounts.map(account =>
 					account.number === action.payload.number
-						? action.number : account
+						? action.payload : account
 				),
 			};
 		case DELETE_ACCOUNT:

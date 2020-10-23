@@ -57,11 +57,11 @@ const AccountList = ({ accounts }) => {
 							<TableCell>{account.status}</TableCell>
 							<TableCell>{account.balance}</TableCell>
 							<TableCell>
-								{/*<Link to={`/edit-account/${account.number}`}>
+								<Link to={`/edit-account/${account.number}`}>
 									<Button variant='contained' color='default' size='small'>
 										Edit
 									</Button>
-								</Link>*/}
+								</Link>
 								<Button
 									variant='contained'
 									color='secondary'
